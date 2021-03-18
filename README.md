@@ -1,4 +1,4 @@
-# universal-social-auth
+# universal-social-auth-test-vu2
 
 ## Project setup
 ```
