@@ -14,6 +14,7 @@
       <br/>
       <div class="row">
     <button @click="useAuthProvider('github', Github)">oAuth Github M2</button>
+    <button @click="useAuthProvider('twitch', Twitch)">oAuth Twitch M2</button>
 <!-- <button @click="useAuthProvider('facebook', Facebook)">auth Facebook M2</button>
 <button @click="useAuthProvider('google', Google)">auth Google M2</button>
 <button @click="useAuthProvider('twitter', Twitter)">auth Twitter M2</button>
@@ -31,6 +32,23 @@ import { Providers} from 'universal-social-auth'
 // Button M2
 import { Github /*Facebook, Google , Twitter*/} from 'universal-social-auth'
 
+const  Twitch = {
+  name: 'twitch',
+  url: '/auth/twitch',
+  authorizationEndpoint: 'https://id.twitch.tv/oauth2/authorize',
+  redirectUri: window.location.origin,
+  scope: ['user:edit,user:read:email'],
+  scopeDelimiter: '%20',
+  oauthType: '2.0',
+  responseType: 'data',
+  responseParams: 'data',
+  requiredUrlParams: ['scope'],
+  optionalUrlParams: ['display'],
+  scopePrefix: 'openid',
+  display: 'popup',
+  state: true,
+  popupOptions: { width: 452, height: 633 }
+}
 export default {
   name: 'HelloWorld',
  props: {
@@ -43,6 +61,7 @@ export default {
       data: {},
       fauth: false,
       Github,
+      Twitch
     //   Facebook,
     //   Google,
     //   Twitter
@@ -69,7 +88,7 @@ export default {
       // otp from input Otp form
       // hash user data in your backend with Cache or save to database
       const pdata = { code: this.responseData.code, otp: this.data.tok, hash: this.hash }
-      this.$axios.post('/social-login/' + this.responseData.provider, pdata).then(async (response) => {
+      this.$axios.post('https://api.diadal.com.ng/social-login/' + this.responseData.provider, pdata).then(async (response) => {
           // `response` data base on your backend config
         if (response.data.status === 444) {
           this.hash = response.data.hash

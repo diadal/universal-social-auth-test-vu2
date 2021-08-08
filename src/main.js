@@ -17,6 +17,10 @@ const options = {
       clientId: '78bfc07e1f25b5e22c26',
       redirectUri: 'https://diadal.com.ng/auth/github/callback'
     },
+    twitch: {
+      clientId: 'qi4vbk30uuvuqigcd5ioq3egxf67m8',
+      redirectUri: 'https://diadal.com.ng/auth/twitch/callback'
+    },
     // google: {
     //   clientId: '***************',
     //   redirectUri: 'https://myapp.com/auth/google/callback'
